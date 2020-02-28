@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="card bg-dark text-white">
+    <img src="https://source.unsplash.com/800x600/?<%= @cocktail.name %>,cocktail)" class="card-img" alt="Cocktail">
+    <div class="card-img-overlay">
+      <h5 class="card-title"><%= @cocktail.name %></h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text">Last updated <%= @cocktail.updated_at.strftime("%d.%m.%Y - %H:%M") %></p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1><%= @cocktail.name %></h1>
+      <div>
+        <% @cocktail.doses.each do |dose| %>
+          <%= dose.description %>
+          <%= dose.ingredient.name %>
+        <% end %>
+      </div>
+
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description %>
+        <%= f.association :ingredient %>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+      <%= link_to "See all cocktails", cocktails_path %>
+    </div>
+  </div>
+</div>
