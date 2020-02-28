@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Saschas Cocktail Database</title>
+    <title>Sascha's Cocktail Database</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+         <img src="https://img.icons8.com/plasticine/2x/cocktail.png" width="30" height="30" alt="">Sascha's Cocktail Database <%= link_to new_cocktail_path, class: 'btn btn-primary' do %>+ <i class="fas fa-cocktail"></i><% end %>
+        </a>
+      </nav>
+      <%= yield %>
+    </div>
     <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
     <%= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
   </body>

@@ -1,12 +1,15 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h1>Create a new cocktail</h1>
-      <%= simple_form_for @cocktail do |f| %>
-        <%= f.input :name %>
-        <%= f.submit class: 'btn btn-primary' %>
-      <% end %>
-    </div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">New</li>
+  </ol>
+</nav>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <%= simple_form_for @cocktail do |f| %>
+      <%= f.input :name %>
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
   </div>
 </div>
+

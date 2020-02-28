@@ -1,51 +1,47 @@
-<div class="container pb-5">
-
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <img src="https://img.icons8.com/plasticine/2x/cocktail.png" width="30" height="30" alt="">Sascha's Cocktail Database <%= link_to new_cocktail_path, class: 'btn btn-primary' do %>+ <i class="fas fa-cocktail"></i><% end %>
-    </a>
-  </nav>
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page"><%=@cocktail.name %></li>
-    </ol>
-  </nav>
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/800x600/?<%= @cocktail.name %>,cocktail);">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 text-center">
-          <h1><%= @cocktail.name %></h1>
-        </div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%=@cocktail.name %></li>
+  </ol>
+</nav>
+<% search_term = @cocktail.name.gsub(/[^0-9A-Za-z]/, '') %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/800x600/?<%= search_term %>,cocktail)">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h1><%= @cocktail.name %></h1>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="row justify-content-center">
-    <div class="col-12 bg-light">
-      <ul class="list-group p-5">
-        <% @cocktail.doses.each do |dose| %>
-          <li class="list-group-item p-1 small">
-            <%= dose.description %> <%= dose.ingredient.name %>
-            <%= link_to cocktail_dose_path(@cocktail.id, dose.id), method: :delete, class: 'pull-right btn btn-default' do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+<div class="row justify-content-center">
+  <div class="col-12 bg-light">
+    <ul class="list-group p-5">
+      <% @cocktail.doses.each do |dose| %>
+        <li class="list-group-item p-1 small">
+          <%= dose.description %> <%= dose.ingredient.name %>
+          <%= link_to cocktail_dose_path(@cocktail.id, dose.id), method: :delete, class: 'pull-right btn btn-default' do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
 
-      <%= simple_form_for [@cocktail, @dose] do |f| %>
-        <%= f.input :description %>
-        <%= f.association :ingredient %>
-        <%= f.submit class: 'btn btn-primary' %>
+    <h5>Add an ingredient</h5>
+
+    <%= simple_form_for [@cocktail, @dose] do |f| %>
+      <%= f.input :description %>
+      <%= f.association :ingredient %>
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
+    <% if @cocktail.photos.attached? %>
+      <h5 class="pt-5">Gallery</h5>
+      <% @cocktail.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 200, width: 300, crop: :fill %>
       <% end %>
-      <% if @cocktail.photos.attached? %>
-        <h5 class="pt-5">Gallery</h5>
-        <% @cocktail.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 200, width: 300, crop: :fill %>
-        <% end %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
 </div>
+
 

@@ -1,46 +1,40 @@
-<div class="container">
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <img src="https://img.icons8.com/plasticine/2x/cocktail.png" width="30" height="30" alt="">Sascha's Cocktail Database <%= link_to new_cocktail_path, class: 'btn btn-primary' do %>+ <i class="fas fa-cocktail"></i><% end %>
-    </a>
-  </nav>
-  <div class="row">
-    <% @cocktails.each do |cocktail| %>
-      <div class="col-4 pb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="https://source.unsplash.com/800x600/?<%= cocktail.name %>,cocktail)" alt="<%= cocktail.name %>">
-          <div class="card-body">
-            <h5 class="card-title"><%= cocktail.name %></h5>
-            <p class="card-text">
-            <ul class="list-group">
-              <% cocktail.doses.each do |dose| %>
-                <li class="list-group-item p-1 small">
-                  <%= dose.description %> <%= dose.ingredient.name %>
-                  <%= link_to cocktail_dose_path(cocktail.id, dose.id), method: :delete, class: 'pull-right btn btn-default' do %>
-                    <i class="fas fa-trash-alt"></i>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-            </p>
-          </div>
-          <div class="card-footer">
-            <%= link_to cocktail_path(cocktail), class: 'pull-left text-decoration-none' do %>
-            <i class="fas fa-search"></i>
+<div class="row">
+  <% @cocktails.each do |cocktail| %>
+    <div class="col-4 pb-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="https://source.unsplash.com/800x600/?<%= cocktail.name %>,cocktail" alt="<%= cocktail.name %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= cocktail.name %></h5>
+          <p class="card-text">
+          <ul class="list-group">
+            <% cocktail.doses.each do |dose| %>
+              <li class="list-group-item p-1 small">
+                <%= dose.description %> <%= dose.ingredient.name %>
+                <%= link_to cocktail_dose_path(cocktail.id, dose.id), method: :delete, class: 'pull-right btn btn-default' do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </li>
             <% end %>
-            <%= link_to cocktail_path(cocktail.id), method: :delete, class: 'pull-left text-decoration-none' do %>
-            <i class="fas fa-trash-alt"></i>
-            <% end %>
-            <%= link_to edit_cocktail_path(cocktail.id), class: 'pull-left text-decoration-none' do %>
-            <i class="fas fa-edit"></i>
-            <% end %>
-            <small class="text-muted"><i class="far fa-clock"></i> <%= cocktail.updated_at.strftime("%d.%m.%Y - %H:%M") %></small>
-          </div>
+          </ul>
+          </p>
+        </div>
+        <div class="card-footer">
+          <%= link_to cocktail_path(cocktail), class: 'pull-left text-decoration-none' do %>
+          <i class="fas fa-search"></i>
+          <% end %>
+          <%= link_to cocktail_path(cocktail.id), method: :delete, class: 'pull-left text-decoration-none' do %>
+          <i class="fas fa-trash-alt"></i>
+          <% end %>
+          <%= link_to edit_cocktail_path(cocktail.id), class: 'pull-left text-decoration-none' do %>
+          <i class="fas fa-edit"></i>
+          <% end %>
+          <small class="text-muted"><i class="far fa-clock"></i> <%= cocktail.updated_at.strftime("%d.%m.%Y - %H:%M") %></small>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
+
 
 
 
