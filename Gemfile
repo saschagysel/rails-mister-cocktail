@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+# pagination
+gem 'will_paginate', '~> 3.3.0'
+gem 'will_paginate-bootstrap4'
+
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'cloudinary', '~> 1.12.0'

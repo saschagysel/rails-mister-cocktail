@@ -2,7 +2,7 @@ class CocktailsController < ApplicationController
   before_action :set_cocktail, except: [:index, :new, :create]
 
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.all.paginate(:page => params[:page], :per_page => 12)
     @dose = Dose.new
   end
 
