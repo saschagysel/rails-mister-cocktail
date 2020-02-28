@@ -21,7 +21,6 @@
     </div>
   </div>
 
-
   <div class="row justify-content-center">
     <div class="col-12 bg-light">
       <ul class="list-group p-5">
@@ -39,6 +38,12 @@
         <%= f.input :description %>
         <%= f.association :ingredient %>
         <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+      <% if @cocktail.photos.attached? %>
+        <h5 class="pt-5">Gallery</h5>
+        <% @cocktail.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 200, width: 300, crop: :fill %>
+        <% end %>
       <% end %>
     </div>
   </div>
